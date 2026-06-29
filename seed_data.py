@@ -169,7 +169,7 @@ if __name__ == "__main__":
 #   "user_id": "d88b3e47-0a0a-4c6b-b962-2241a5497348"
 # }
 
-# Since 2/3 stats are correct, the bug is not in get_reading_history()
+# Since 2/3 stats are correct, the bug is not in get_reading_history(). It's probably inside of the calculate_streak() function directly.
 
 # curl http://127.0.0.1:5000/reading/history/d88b3e47-0a0a-4c6b-b962-2241a5497348
 # [
@@ -224,3 +224,5 @@ if __name__ == "__main__":
 # ]
 
 # This returns the reading history with the most recently STARTED book first, not the most recently FINISHED book.(BUG)
+
+# The streak should be 2, not 0 (Alex finished books on 6/27 and 6/28)
