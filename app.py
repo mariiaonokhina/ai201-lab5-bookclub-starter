@@ -41,3 +41,6 @@ def create_app(config=None):
 if __name__ == "__main__":
     app = create_app()
     app.run(debug=True)
+
+# MILETSONE 1:
+# app.create_app() -> stats.get_stats() -> stats_service.calculate_streak() -> reading_service.get_reading_history()
