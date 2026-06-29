@@ -121,10 +121,15 @@ def get_reading_history(user_id: str) -> list[ReadingEvent]:
     return (
         ReadingEvent.query.filter_by(user_id=user_id)
         .filter(ReadingEvent.finished_at.isnot(None))
-        .order_by(ReadingEvent.started_at.desc())
+        .order_by(ReadingEvent.finished_at.desc())
         .all()
     )
 
+# MILESTONE 4
+# The docstring says: "Return all books a user has finished, most recently finished first."
+# The code does: Returns the reading history with the most recently STARTED book first, not the most recently FINISHED book.
+# The bug is on line: 124
+# The fix is: Change `started_at` to `finished_at` in the order_by clause.
 
 def get_currently_reading(user_id: str) -> list[ReadingEvent]:
     """
