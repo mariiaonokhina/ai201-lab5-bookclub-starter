@@ -32,7 +32,7 @@ def calculate_streak(user_id: str) -> int:
 
     # Collect unique reading dates, most recent first.
     dates = sorted(
-        set(e.started_at.date() for e in events),
+        set(e.finished_at.date() for e in events),
         reverse=True,
     )
 
@@ -52,6 +52,11 @@ def calculate_streak(user_id: str) -> int:
 
     return streak
 
+# MILESTONE 3
+# The docstring says: "A streak is the number of consecutive calendar days on which the user finished at least one book, counting back from today (or yesterday, if nothing has been finished today yet)."
+# The code does: It collects the dates of the books that were STARTED, not FINISHED. This is a bug because the streak should be based on finished books, not started books.
+# The bug is on line: 35
+# The fix is: Change to `finished_at` instead of `started_at`
 
 def books_this_month(user_id: str) -> int:
     """
