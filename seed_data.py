@@ -159,3 +159,68 @@ def seed():
 
 if __name__ == "__main__":
     seed()
+
+# MILESTONE 2:
+# curl http://127.0.0.1:5000/stats/d88b3e47-0a0a-4c6b-b962-2241a5497348
+# {
+#   "books_this_month": 3,
+#   "reading_streak": 0,   <-- THIS IS WRONG (BUG)
+#   "total_pages_read": 814,
+#   "user_id": "d88b3e47-0a0a-4c6b-b962-2241a5497348"
+# }
+
+# Since 2/3 stats are correct, the bug is not in get_reading_history()
+
+# curl http://127.0.0.1:5000/reading/history/d88b3e47-0a0a-4c6b-b962-2241a5497348
+# [
+#   {
+#     "book": {
+#       "added_at": "2026-04-10T02:21:21.503433",
+#       "added_by": "d88b3e47-0a0a-4c6b-b962-2241a5497348",
+#       "author": "James Baldwin",
+#       "genre": "literary fiction",
+#       "id": "fd90193c-e15d-43cc-ab7d-57b1d446f066",
+#       "pages": 176,
+#       "title": "Giovanni's Room"
+#     },
+#     "book_id": "fd90193c-e15d-43cc-ab7d-57b1d446f066",
+#     "finished_at": "2026-06-27T02:21:21.503433",
+#     "id": "f8cdb852-5d1c-43f5-86ae-7d51ce2e201a",
+#     "started_at": "2026-04-20T02:21:21.503433",
+#     "user_id": "d88b3e47-0a0a-4c6b-b962-2241a5497348"
+#   },
+#   {
+#     "book": {
+#       "added_at": "2026-04-05T02:21:21.503433",
+#       "added_by": "d88b3e47-0a0a-4c6b-b962-2241a5497348",
+#       "author": "Octavia E. Butler",
+#       "genre": "sci-fi",
+#       "id": "ada945d4-f105-4511-80fd-0b67af3bacd8",
+#       "pages": 352,
+#       "title": "Parable of the Sower"
+#     },
+#     "book_id": "ada945d4-f105-4511-80fd-0b67af3bacd8",
+#     "finished_at": "2026-06-28T02:21:21.503433",
+#     "id": "097fa499-c67f-464c-8820-a1e9f2fe1ad0",
+#     "started_at": "2026-04-12T02:21:21.503433",
+#     "user_id": "d88b3e47-0a0a-4c6b-b962-2241a5497348"
+#   },
+#   {
+#     "book": {
+#       "added_at": "2026-03-31T02:21:21.503433",
+#       "added_by": "d88b3e47-0a0a-4c6b-b962-2241a5497348",
+#       "author": "Ursula K. Le Guin",
+#       "genre": "sci-fi",
+#       "id": "bc388ac5-1034-4391-95f3-de7b4e995f0b",
+#       "pages": 286,
+#       "title": "The Left Hand of Darkness"
+#     },
+#     "book_id": "bc388ac5-1034-4391-95f3-de7b4e995f0b",
+#     "finished_at": "2026-06-28T23:21:21.503433",
+#     "id": "f7c180e1-269f-4d73-a3fd-36db5f34cb9a",
+#     "started_at": "2026-04-05T02:21:21.503433",
+#     "user_id": "d88b3e47-0a0a-4c6b-b962-2241a5497348"
+#   }
+# ]
+
+# This returns the reading history with the most recently STARTED book first, not the most recently FINISHED book.(BUG)
